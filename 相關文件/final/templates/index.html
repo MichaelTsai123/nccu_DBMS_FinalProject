@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>資料庫期末</title>
+  </head>
+  <body>
+    <h1>來找尋附近好吃的火鍋店！</h1>
+    <p>選擇你想看的table</p>
+    <form action="/show" method="post">
+      <label for="table_name">table名稱：</label>
+      <input type="radio" name="table_name" value="品牌名稱">品牌名稱
+      <input type="radio" name="table_name" value="火鍋店全名">火鍋店全名
+      <input type="submit" value="Submit">
+    </form>
+    <hr>
+    <h3>功能列</h3>
+    <ul>
+      <li>首頁（介紹頁）</li>
+      <li><a href="/reset">重設table</a></li>
+    </ul>
+  </body>
+</html>
