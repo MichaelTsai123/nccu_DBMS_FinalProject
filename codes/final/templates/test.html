@@ -1,0 +1,19 @@
+    <form name="contactForm">
+        <select name="in" onchange="myFunction()">
+            <option>Select One</option>
+            <option>One</option>
+            <option>Two</option>
+            <option>Three</option>
+        </select>
+        <select id="select">
+            <option>Select One</option>
+        </select>
+    </form>
+<script>
+    function myFunction() {
+        var x = document.contactForm.in.value;
+        if (x == "One") {
+            document.getElementById('select').innerHTML = "<option>A</option><option>Two</option>";
+        }
+    }
+</script>
