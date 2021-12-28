@@ -142,11 +142,13 @@
                     <div class="col-lg-4 me-auto"><p class="lead">留給Google MAP的區域</p></div>
                 </div>
                 <!-- About Section Button-->
-                <div class="text-center mt-4">
+                <!-- <div class="text-center mt-4">
                     <a class="btn btn-xl btn-outline-light" href="http://127.0.0.1:5000/#portfolio">
                         <i class="fas fa-download me-2"></i>
                         test
                     </a>
+                </div> -->
+                <div id = 'googlemap' style =  "height: 1000px  ; width: 100%; ">
                 </div>
             </div>
         </section>
@@ -507,5 +509,28 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+        function initMap() {
+            var Station_latlng = { lat: 24.9848357, lng: 121.5617507 }; // 台北車站的經緯度
+            var map = new google.maps.Map(document.getElementById('googlemap'), {
+                zoom: 20, //放大的倍率
+                center: Station_latlng //初始化的地圖中心位置
+            });
+
+        //--------下面是呼叫一個新marker------
+        
+
+            var marker = new google.maps.Marker({
+                position: Station_latlng, //marker的放置位置
+                map: map //這邊的map指的是第四行的map變數
+            });
+
+            }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtZxIFMNmzMg8masg3-Ff-99SygUf6zWE&callback=initMap">
+        </script>
     </body>
 </html>
