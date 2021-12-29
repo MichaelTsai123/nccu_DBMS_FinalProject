@@ -202,21 +202,81 @@
                     <!-- To make this form functional, sign up at-->
                     <!-- https://startbootstrap.com/solution/contact-forms-->
                     <!-- to get an API token!-->
-                    <form name="contactForm">
-                        <select name="way" onchange="CRUD_function()">
-                            <option disabled selected value> -- 請選擇欲使用之功能 -- </option>
-                            <option>Insert</option>
-                            <option>Update</option>
-                            <option>Delete</option>
-                        </select>
-                        <select id="tables" onchange="Insert_function()" style = "visibility:hidden">
-                             disabled selected value
-                        </select>
-                        <select id="attitudes" style = "visibility:hidden">
-                            <option>尚未選取</option>
-                        </select>
-                        <input id="index"type="text" style = "visibility:hidden"></input>
-                    </form>
+                    <form name="contactForm" action="/show" method="post" data-sb-form-api-token="API_TOKEN">
+                        <div class="form-floating mb-10" align="center">
+                            <select name="way" id="way" class="form-floating mb-3" onchange="CRUD_function()">
+                                <option disabled selected value> -- 請選擇欲使用之功能 -- </option>
+                                <option>Insert</option>
+                                <option>Update</option>
+                                <option>Delete</option>
+                            </select>
+                            <br><br>
+                        </div>
+                        <div style="float:left;width:40%">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="XXXX-XXX-XXX" id="insert1" type="text"
+                                    style="visibility:hidden" data-sb-validations="required"></input>
+                                <label for="name" id="l1" style="visibility:hidden">電話號碼</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="OO市OO區OO街..." id="insert2" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l2" style="visibility:hidden">地址</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="1~5顆星" id="insert3" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l3" style="visibility:hidden">評論數</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="價錢品級" id="insert4" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l4" style="visibility:hidden">價錢</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="該店家名稱" id="insert5" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l5" style="visibility:hidden">店名</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="品牌名稱" id="insert6" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l6" style="visibility:hidden">品牌</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="例如 : 台北市、新北市..." id="insert7" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l7" style="visibility:hidden">縣市</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="例如 : 三重區、內湖區" id="insert8" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l8" style="visibility:hidden">分區</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="1~5顆星" id="insert9" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l9" style="visibility:hidden">平均星數</label>
+                            </div>
+                            
+                        </div>
+
+
+                        <div style="float:right;width:40%">
+                            <select id="tables" onchange="Update_function()" style="visibility:hidden">
+                                <option>尚未選取</option>
+                            </select>
+                            <br><br>
+                            <select id="attitudes" style="visibility:hidden">
+                                <option>尚未選取</option>
+                            </select>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="更新值" id="index" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l10" style="visibility:hidden">更新值</label>
+                            </div>
+                        </div>
+                        
 
 
                     <script>
@@ -225,16 +285,93 @@
                             if (x == "Update") {
                                 document.getElementById('tables').innerHTML = "<option disabled selected value> -- 請選擇欲修改的表格 -- </option><option>店家資訊</option><option>區域</option><option>品牌</option><option>服務位置</option><option>評論</option><option>營業時間</option>";
                                 document.getElementById('tables').style.visibility = "visible";
+                                document.getElementById('index').style.visibility = "visible";
+                                document.getElementById('attitudes').style.visibility = "hidden";
+                                document.getElementById('l10').style.visibility = "visible";
+
+                                document.getElementById('insert1').style.visibility = "hidden";
+                                document.getElementById('insert2').style.visibility = "hidden";
+                                document.getElementById('insert3').style.visibility = "hidden";
+                                document.getElementById('insert4').style.visibility = "hidden";
+                                document.getElementById('insert5').style.visibility = "hidden";
+                                document.getElementById('insert6').style.visibility = "hidden";
+                                document.getElementById('insert7').style.visibility = "hidden";
+                                document.getElementById('insert8').style.visibility = "hidden";
+                                document.getElementById('insert9').style.visibility = "hidden";
+
+                                document.getElementById('l1').style.visibility = "hidden";
+                                document.getElementById('l2').style.visibility = "hidden";
+                                document.getElementById('l3').style.visibility = "hidden";
+                                document.getElementById('l4').style.visibility = "hidden";
+                                document.getElementById('l5').style.visibility = "hidden";
+                                document.getElementById('l6').style.visibility = "hidden";
+                                document.getElementById('l7').style.visibility = "hidden";
+                                document.getElementById('l8').style.visibility = "hidden";
+                                document.getElementById('l9').style.visibility = "hidden";
                             }
                             else if (x == "Insert") {
-                                document.getElementById('tables').innerHTML = "<option>B</option><option>Two</option>";
+                                document.getElementById('index').style.visibility = "hidden";
+                                document.getElementById('tables').style.visibility = "hidden";
+                                document.getElementById('attitudes').style.visibility = "hidden";
+                                document.getElementById('l10').style.visibility = "hidden";
+
+                                document.getElementById('insert1').style.visibility = "visible";
+                                document.getElementById('insert2').style.visibility = "visible";
+                                document.getElementById('insert3').style.visibility = "visible";
+                                document.getElementById('insert4').style.visibility = "visible";
+                                document.getElementById('insert5').style.visibility = "visible";
+                                document.getElementById('insert6').style.visibility = "visible";
+                                document.getElementById('insert7').style.visibility = "visible";
+                                document.getElementById('insert8').style.visibility = "visible";
+                                document.getElementById('insert9').style.visibility = "visible";
+
+                                document.getElementById('l1').style.visibility = "visible";
+                                document.getElementById('l2').style.visibility = "visible";
+                                document.getElementById('l3').style.visibility = "visible";
+                                document.getElementById('l4').style.visibility = "visible";
+                                document.getElementById('l5').style.visibility = "visible";
+                                document.getElementById('l6').style.visibility = "visible";
+                                document.getElementById('l7').style.visibility = "visible";
+                                document.getElementById('l8').style.visibility = "visible";
+                                document.getElementById('l9').style.visibility = "visible";
+
                             }
                             else if (x == "Delete") {
-                                document.getElementById('tables').innerHTML = "<option>C</option><option>Two</option>";
+                                document.getElementById('tables').innerHTML = "<option disabled selected value> -- 僅限修改店家表單 -- </option>";
+                                
+                                document.getElementById('index').style.visibility = "visible";
+                                document.getElementById('tables').style.visibility = "visible";
+                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('l10').style.visibility = "visible";
+
+                                document.getElementById('insert1').style.visibility = "hidden";
+                                document.getElementById('insert2').style.visibility = "hidden";
+                                document.getElementById('insert3').style.visibility = "hidden";
+                                document.getElementById('insert4').style.visibility = "hidden";
+                                document.getElementById('insert5').style.visibility = "hidden";
+                                document.getElementById('insert6').style.visibility = "hidden";
+                                document.getElementById('insert7').style.visibility = "hidden";
+                                document.getElementById('insert8').style.visibility = "hidden";
+                                document.getElementById('insert9').style.visibility = "hidden";
+
+                                document.getElementById('l1').style.visibility = "hidden";
+                                document.getElementById('l2').style.visibility = "hidden";
+                                document.getElementById('l3').style.visibility = "hidden";
+                                document.getElementById('l4').style.visibility = "hidden";
+                                document.getElementById('l5').style.visibility = "hidden";
+                                document.getElementById('l6').style.visibility = "hidden";
+                                document.getElementById('l7').style.visibility = "hidden";
+                                document.getElementById('l8').style.visibility = "hidden";
+                                document.getElementById('l9').style.visibility = "hidden";
+
+                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>電話</option><option>地址</option><option>評論數</option><option>價錢</option><option>店名</option><option>品牌</option><option>縣市</option><option>分區</option><option>平均星數</option>";
+
+
                             }
                         }
-                        function Insert_function() {
+                        function Update_function() {
                             var x = document.contactForm.tables.value;
+
                             if (x == "店家資訊") {
                                 document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>電話</option><option>地址</option><option>評論數</option><option>價錢</option><option>店名</option><option>品牌</option><option>縣市</option><option>分區</option><option>平均星數</option>";
                                 document.getElementById('attitudes').style.visibility = "visible";
@@ -267,73 +404,12 @@
                             }
                         }
                     </script>
-
-
-
-
-
-
-
-
-
-
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Name input-->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="name" type="text" placeholder="Enter your name..."
-                                data-sb-validations="required" />
-                            <label for="name">Full name</label>
-                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                        </div>
-                        <!-- Email address input-->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="email" type="email" placeholder="name@example.com"
-                                data-sb-validations="required,email" />
-                            <label for="email">Email address</label>
-                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        </div>
-                        <!-- Phone number input-->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
-                                data-sb-validations="required" />
-                            <label for="phone">Phone number</label>
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
-                            </div>
-                        </div>
-                        <!-- Message input-->
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" id="message" type="text"
-                                placeholder="Enter your message here..." style="height: 10rem"
-                                data-sb-validations="required"></textarea>
-                            <label for="message">Message</label>
-                            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
-                            </div>
-                        </div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a
-                                    href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                            </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                            <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
-                    </form>
+    
                 </div>
+                <button class="btn btn-primary" id="submitButton" type="submit" align="center">Send</button>
+                    </form>
             </div>
+            
         </div>
     </section>
     <!-- Footer-->
@@ -344,9 +420,9 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Location</h4>
                     <p class="lead mb-0">
-                        2215 John Daniel Drive
+                        台北市文山區指南路二段264號
                         <br />
-                        Clark, MO 65243
+                        政治大學資訊科學系
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
@@ -361,10 +437,10 @@
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                    <h4 class="text-uppercase mb-4">關於本專案</h4>
                     <p class="lead mb-0">
-                        Freelance is a free to use, MIT licensed Bootstrap theme created by
-                        <a href="http://startbootstrap.com">Start Bootstrap</a>
+                        為資料庫結合網頁之項目，詳細程式碼可前往
+                        <a href="https://github.com/neno12345/nccu_DBMS_FinalProject">Giuthub網頁</a>觀看
                         .
                     </p>
                 </div>
