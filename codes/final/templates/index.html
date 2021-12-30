@@ -25,6 +25,9 @@
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="#page-top">火鍋地圖</a>
+            <img 
+                                    src="{{ url_for('static', filename='assets/img/portfolio/hot_plot.gif') }}"
+                                    alt="..." width="100"/>
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -215,7 +218,7 @@
                         <div style="float:left;width:40%">
                             <div class="form-floating mb-3">
                                 <input class="form-control" placeholder="XXXX-XXX-XXX" name="phone" id="phone" type="text"
-                                    style="visibility:hidden" data-sb-validations="required"></input>
+                                    style="visibility:hidden"  required></input>
                                 <label for="name" id="l1" style="visibility:hidden">電話號碼</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -235,12 +238,12 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" placeholder="該店家名稱" name="shop_name" id="shop_name" type="text"
-                                    style="visibility:hidden"></input>
+                                    style="visibility:hidden" required></input>
                                 <label for="name" id="l5" style="visibility:hidden">店名</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="品牌名稱" name="brand" id="brand" type="text"
-                                    style="visibility:hidden"></input>
+                                <input class="form-control" placeholder="pid" name="brand" id="brand" type="text"
+                                    style="visibility:hidden" required></input>
                                 <label for="name" id="l6" style="visibility:hidden">品牌</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -265,17 +268,17 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" placeholder="營業星期" name="bussiness_day" id="bussiness_day" type="text"
-                                    style="visibility:hidden"></input>
+                                    style="visibility:hidden" required></input>
                                 <label for="name" id="l12" style="visibility:hidden">營業星期</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" placeholder="開門時間" name="open_time" id="open_time" type="text"
-                                    style="visibility:hidden"></input>
+                                    style="visibility:hidden" required></input>
                                 <label for="name" id="l13" style="visibility:hidden">開門時間</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" placeholder="關門時間" name="close_time" id="close_time" type="text"
-                                    style="visibility:hidden"></input>
+                                    style="visibility:hidden" required></input>
                                 <label for="name" id="l14" style="visibility:hidden">關門時間</label>
                             </div>
                             
@@ -474,19 +477,19 @@
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Around the Web</h4>
+                    <!--<h4 class="text-uppercase mb-4">Around the Web</h4>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
                             class="fab fa-fw fa-facebook-f"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
                             class="fab fa-fw fa-linkedin-in"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                </div>
+                --></div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
                     <h4 class="text-uppercase mb-4">關於本專案</h4>
                     <p class="lead mb-0">
-                        為資料庫結合網頁之項目，詳細程式碼可前往
+                        資料庫結合網頁之項目，詳細程式碼可前往
                         <a href="https://github.com/neno12345/nccu_DBMS_FinalProject">Giuthub網頁</a>觀看
                         .
                     </p>
