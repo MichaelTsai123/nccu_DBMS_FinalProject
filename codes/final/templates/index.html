@@ -214,47 +214,47 @@
                         </div>
                         <div style="float:left;width:40%">
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="XXXX-XXX-XXX" id="insert1" type="text"
+                                <input class="form-control" placeholder="XXXX-XXX-XXX" name="phone" id="phone" type="text"
                                     style="visibility:hidden" data-sb-validations="required"></input>
                                 <label for="name" id="l1" style="visibility:hidden">電話號碼</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="OO市OO區OO街..." id="insert2" type="text"
+                                <input class="form-control" placeholder="OO市OO區OO街..." name='address' id="address" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l2" style="visibility:hidden">地址</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="1~5顆星" id="insert3" type="text"
+                                <input class="form-control" placeholder="1~5顆星" name="comment" id="comment" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l3" style="visibility:hidden">評論數</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="價錢品級" id="insert4" type="text"
+                                <input class="form-control" placeholder="價錢品級" name="cost" id="cost" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l4" style="visibility:hidden">價錢</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="該店家名稱" id="insert5" type="text"
+                                <input class="form-control" placeholder="該店家名稱" name="shop_name" id="shop_name" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l5" style="visibility:hidden">店名</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="品牌名稱" id="insert6" type="text"
+                                <input class="form-control" placeholder="品牌名稱" name="brand" id="brand" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l6" style="visibility:hidden">品牌</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="例如 : 台北市、新北市..." id="insert7" type="text"
+                                <input class="form-control" placeholder="例如 : 台北市、新北市..." name="city" id="city" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l7" style="visibility:hidden">縣市</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="例如 : 三重區、內湖區" id="insert8" type="text"
+                                <input class="form-control" placeholder="例如 : 三重區、內湖區" name="district" id="district" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l8" style="visibility:hidden">分區</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="1~5顆星" id="insert9" type="text"
+                                <input class="form-control" placeholder="1~5顆星" name="star" id="star" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l9" style="visibility:hidden">平均星數</label>
                             </div>
@@ -263,15 +263,15 @@
 
 
                         <div style="float:right;width:40%">
-                            <select id="tables" onchange="Update_function()" style="visibility:hidden">
+                            <select name="table" id="table" onchange="Update_function()" style="visibility:hidden">
                                 <option>尚未選取</option>
                             </select>
                             <br><br>
-                            <select id="attitudes" style="visibility:hidden">
+                            <select name="attribute" id="attribute" style="visibility:hidden">
                                 <option>尚未選取</option>
                             </select>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="更新值" id="index" type="text"
+                                <input class="form-control" placeholder="更新值" name="index" id="index" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l10" style="visibility:hidden">更新值</label>
                             </div>
@@ -289,15 +289,15 @@
                                 document.getElementById('attitudes').style.visibility = "hidden";
                                 document.getElementById('l10').style.visibility = "visible";
 
-                                document.getElementById('insert1').style.visibility = "hidden";
-                                document.getElementById('insert2').style.visibility = "hidden";
-                                document.getElementById('insert3').style.visibility = "hidden";
-                                document.getElementById('insert4').style.visibility = "hidden";
-                                document.getElementById('insert5').style.visibility = "hidden";
-                                document.getElementById('insert6').style.visibility = "hidden";
-                                document.getElementById('insert7').style.visibility = "hidden";
-                                document.getElementById('insert8').style.visibility = "hidden";
-                                document.getElementById('insert9').style.visibility = "hidden";
+                                document.getElementById('phone').style.visibility = "hidden";
+                                document.getElementById('address').style.visibility = "hidden";
+                                document.getElementById('comment').style.visibility = "hidden";
+                                document.getElementById('cost').style.visibility = "hidden";
+                                document.getElementById('shop_name').style.visibility = "hidden";
+                                document.getElementById('brand').style.visibility = "hidden";
+                                document.getElementById('city').style.visibility = "hidden";
+                                document.getElementById('district').style.visibility = "hidden";
+                                document.getElementById('star').style.visibility = "hidden";
 
                                 document.getElementById('l1').style.visibility = "hidden";
                                 document.getElementById('l2').style.visibility = "hidden";
@@ -311,19 +311,19 @@
                             }
                             else if (x == "Insert") {
                                 document.getElementById('index').style.visibility = "hidden";
-                                document.getElementById('tables').style.visibility = "hidden";
-                                document.getElementById('attitudes').style.visibility = "hidden";
+                                document.getElementById('table').style.visibility = "hidden";
+                                document.getElementById('attribute').style.visibility = "hidden";
                                 document.getElementById('l10').style.visibility = "hidden";
 
-                                document.getElementById('insert1').style.visibility = "visible";
-                                document.getElementById('insert2').style.visibility = "visible";
-                                document.getElementById('insert3').style.visibility = "visible";
-                                document.getElementById('insert4').style.visibility = "visible";
-                                document.getElementById('insert5').style.visibility = "visible";
-                                document.getElementById('insert6').style.visibility = "visible";
-                                document.getElementById('insert7').style.visibility = "visible";
-                                document.getElementById('insert8').style.visibility = "visible";
-                                document.getElementById('insert9').style.visibility = "visible";
+                                document.getElementById('phone').style.visibility = "visible";
+                                document.getElementById('address').style.visibility = "visible";
+                                document.getElementById('comment').style.visibility = "visible";
+                                document.getElementById('cost').style.visibility = "visible";
+                                document.getElementById('shop_name').style.visibility = "visible";
+                                document.getElementById('brand').style.visibility = "visible";
+                                document.getElementById('city').style.visibility = "visible";
+                                document.getElementById('district').style.visibility = "visible";
+                                document.getElementById('star').style.visibility = "visible";
 
                                 document.getElementById('l1').style.visibility = "visible";
                                 document.getElementById('l2').style.visibility = "visible";
@@ -337,22 +337,22 @@
 
                             }
                             else if (x == "Delete") {
-                                document.getElementById('tables').innerHTML = "<option disabled selected value> -- 僅限修改店家表單 -- </option>";
+                                document.getElementById('table').innerHTML = "<option disabled selected value> -- 僅限修改店家表單 -- </option>";
                                 
                                 document.getElementById('index').style.visibility = "visible";
-                                document.getElementById('tables').style.visibility = "visible";
-                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('table').style.visibility = "visible";
+                                document.getElementById('attribute').style.visibility = "visible";
                                 document.getElementById('l10').style.visibility = "visible";
 
-                                document.getElementById('insert1').style.visibility = "hidden";
-                                document.getElementById('insert2').style.visibility = "hidden";
-                                document.getElementById('insert3').style.visibility = "hidden";
-                                document.getElementById('insert4').style.visibility = "hidden";
-                                document.getElementById('insert5').style.visibility = "hidden";
-                                document.getElementById('insert6').style.visibility = "hidden";
-                                document.getElementById('insert7').style.visibility = "hidden";
-                                document.getElementById('insert8').style.visibility = "hidden";
-                                document.getElementById('insert9').style.visibility = "hidden";
+                                document.getElementById('phone').style.visibility = "hidden";
+                                document.getElementById('address').style.visibility = "hidden";
+                                document.getElementById('comment').style.visibility = "hidden";
+                                document.getElementById('cost').style.visibility = "hidden";
+                                document.getElementById('shop_name').style.visibility = "hidden";
+                                document.getElementById('brand').style.visibility = "hidden";
+                                document.getElementById('city').style.visibility = "hidden";
+                                document.getElementById('district').style.visibility = "hidden";
+                                document.getElementById('star').style.visibility = "hidden";
 
                                 document.getElementById('l1').style.visibility = "hidden";
                                 document.getElementById('l2').style.visibility = "hidden";
