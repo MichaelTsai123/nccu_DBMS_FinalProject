@@ -224,7 +224,7 @@
                                 <label for="name" id="l2" style="visibility:hidden">地址</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" placeholder="1~5顆星" name="comment" id="comment" type="text"
+                                <input class="form-control" placeholder="1~5顆星" name="comment_level" id="comment_level" type="text"
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l3" style="visibility:hidden">評論數</label>
                             </div>
@@ -258,6 +258,26 @@
                                     style="visibility:hidden"></input>
                                 <label for="name" id="l9" style="visibility:hidden">平均星數</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="評論內容" name="comment1" id="comment1" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l11" style="visibility:hidden">評論內容</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="營業星期" name="bussiness_day" id="bussiness_day" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l12" style="visibility:hidden">營業星期</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="開門時間" name="open_time" id="open_time" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l13" style="visibility:hidden">開門時間</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="關門時間" name="close_time" id="close_time" type="text"
+                                    style="visibility:hidden"></input>
+                                <label for="name" id="l14" style="visibility:hidden">關門時間</label>
+                            </div>
                             
                         </div>
 
@@ -286,18 +306,22 @@
                                 document.getElementById('tables').innerHTML = "<option disabled selected value> -- 請選擇欲修改的表格 -- </option><option>店家資訊</option><option>區域</option><option>品牌</option><option>服務位置</option><option>評論</option><option>營業時間</option>";
                                 document.getElementById('tables').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
-                                document.getElementById('attitudes').style.visibility = "hidden";
+                                document.getElementById('attribute').style.visibility = "hidden";
                                 document.getElementById('l10').style.visibility = "visible";
 
                                 document.getElementById('phone').style.visibility = "hidden";
                                 document.getElementById('address').style.visibility = "hidden";
-                                document.getElementById('comment').style.visibility = "hidden";
+                                document.getElementById('comment_level').style.visibility = "hidden";
                                 document.getElementById('cost').style.visibility = "hidden";
                                 document.getElementById('shop_name').style.visibility = "hidden";
                                 document.getElementById('brand').style.visibility = "hidden";
                                 document.getElementById('city').style.visibility = "hidden";
                                 document.getElementById('district').style.visibility = "hidden";
                                 document.getElementById('star').style.visibility = "hidden";
+                                document.getElementById('comment1').style.visibility = "hidden";
+                                document.getElementById('bussiness_day').style.visibility = "hidden";
+                                document.getElementById('open_time').style.visibility = "hidden";
+                                document.getElementById('close_time').style.visibility = "hidden";
 
                                 document.getElementById('l1').style.visibility = "hidden";
                                 document.getElementById('l2').style.visibility = "hidden";
@@ -308,6 +332,10 @@
                                 document.getElementById('l7').style.visibility = "hidden";
                                 document.getElementById('l8').style.visibility = "hidden";
                                 document.getElementById('l9').style.visibility = "hidden";
+                                document.getElementById('l11').style.visibility = "hidden";
+                                document.getElementById('l12').style.visibility = "hidden";
+                                document.getElementById('l13').style.visibility = "hidden";
+                                document.getElementById('l14').style.visibility = "hidden";
                             }
                             else if (x == "Insert") {
                                 document.getElementById('index').style.visibility = "hidden";
@@ -317,13 +345,17 @@
 
                                 document.getElementById('phone').style.visibility = "visible";
                                 document.getElementById('address').style.visibility = "visible";
-                                document.getElementById('comment').style.visibility = "visible";
+                                document.getElementById('comment_level').style.visibility = "visible";
                                 document.getElementById('cost').style.visibility = "visible";
                                 document.getElementById('shop_name').style.visibility = "visible";
                                 document.getElementById('brand').style.visibility = "visible";
                                 document.getElementById('city').style.visibility = "visible";
                                 document.getElementById('district').style.visibility = "visible";
                                 document.getElementById('star').style.visibility = "visible";
+                                document.getElementById('comment1').style.visibility = "visible";
+                                document.getElementById('bussiness_day').style.visibility = "visible";
+                                document.getElementById('open_time').style.visibility = "visible";
+                                document.getElementById('close_time').style.visibility = "visible";
 
                                 document.getElementById('l1').style.visibility = "visible";
                                 document.getElementById('l2').style.visibility = "visible";
@@ -334,6 +366,10 @@
                                 document.getElementById('l7').style.visibility = "visible";
                                 document.getElementById('l8').style.visibility = "visible";
                                 document.getElementById('l9').style.visibility = "visible";
+                                document.getElementById('l11').style.visibility = "visible";
+                                document.getElementById('l12').style.visibility = "visible";
+                                document.getElementById('l13').style.visibility = "visible";
+                                document.getElementById('l14').style.visibility = "visible";
 
                             }
                             else if (x == "Delete") {
@@ -346,13 +382,17 @@
 
                                 document.getElementById('phone').style.visibility = "hidden";
                                 document.getElementById('address').style.visibility = "hidden";
-                                document.getElementById('comment').style.visibility = "hidden";
+                                document.getElementById('comment_level').style.visibility = "hidden";
                                 document.getElementById('cost').style.visibility = "hidden";
                                 document.getElementById('shop_name').style.visibility = "hidden";
                                 document.getElementById('brand').style.visibility = "hidden";
                                 document.getElementById('city').style.visibility = "hidden";
                                 document.getElementById('district').style.visibility = "hidden";
                                 document.getElementById('star').style.visibility = "hidden";
+                                document.getElementById('comment1').style.visibility = "hidden";
+                                document.getElementById('bussiness_day').style.visibility = "hidden";
+                                document.getElementById('open_time').style.visibility = "hidden";
+                                document.getElementById('close_time').style.visibility = "hidden";
 
                                 document.getElementById('l1').style.visibility = "hidden";
                                 document.getElementById('l2').style.visibility = "hidden";
@@ -363,9 +403,15 @@
                                 document.getElementById('l7').style.visibility = "hidden";
                                 document.getElementById('l8').style.visibility = "hidden";
                                 document.getElementById('l9').style.visibility = "hidden";
+                                document.getElementById('l11').style.visibility = "hidden";
+                                document.getElementById('l12').style.visibility = "hidden";
+                                document.getElementById('l13').style.visibility = "hidden";
+                                document.getElementById('l14').style.visibility = "hidden";
 
-                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>電話</option><option>地址</option><option>評論數</option><option>價錢</option><option>店名</option><option>品牌</option><option>縣市</option><option>分區</option><option>平均星數</option>";
-
+                                //document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>電話</option><option>地址</option><option>評論數</option><option>價錢</option><option>店名</option><option>品牌</option><option>縣市</option><option>分區</option><option>平均星數</option>";
+                                document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 僅限以電話進行修改 -- </option>";
+                                
+                                    
 
                             }
                         }
@@ -373,33 +419,33 @@
                             var x = document.contactForm.tables.value;
 
                             if (x == "店家資訊") {
-                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>電話</option><option>地址</option><option>評論數</option><option>價錢</option><option>店名</option><option>品牌</option><option>縣市</option><option>分區</option><option>平均星數</option>";
-                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>電話</option><option>地址</option><option>評論數</option><option>價錢</option><option>店名</option><option>品牌</option><option>縣市</option><option>分區</option><option>平均星數</option>";
+                                document.getElementById('attribute').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
                             }
                             else if (x == "區域") {
-                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>縣市</option><option>分區</option>";
-                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>縣市</option><option>分區</option>";
+                                document.getElementById('attribute').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
                             }
                             else if (x == "品牌") {
-                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>網址</option><option>經度</option><option>緯度</option><option>電話</option>";
-                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>網址</option><option>經度</option><option>緯度</option><option>電話</option>";
+                                document.getElementById('attribute').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
                             }
                             else if (x == "服務位置") {
-                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>網址</option><option>電話</option>";
-                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>網址</option><option>電話</option>";
+                                document.getElementById('attribute').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
                             }
                             else if (x == "評論") {
-                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>評論1</option><option>評論2</option><option>評論3</option><option>電話</option>";
-                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>評論1</option><option>評論2</option><option>評論3</option><option>電話</option>";
+                                document.getElementById('attribute').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
                             }
                             else if (x == "營業時間") {
-                                document.getElementById('attitudes').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>營業星期</option><option>開門時間</option><option>關門時間</option><option>電話</option>";
-                                document.getElementById('attitudes').style.visibility = "visible";
+                                document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>營業星期</option><option>開門時間</option><option>關門時間</option><option>電話</option>";
+                                document.getElementById('attribute').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
                             }
                         }
