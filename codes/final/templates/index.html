@@ -281,6 +281,16 @@
                                     style="visibility:hidden" ></input>
                                 <label for="name" id="l14" style="visibility:hidden">關門時間</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="經度" name="latitude" id="latitude" type="text"
+                                    style="visibility:hidden" ></input>
+                                <label for="name" id="l16" style="visibility:hidden">經度</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" placeholder="緯度" name="longitude" id="longitude" type="text"
+                                    style="visibility:hidden" ></input>
+                                <label for="name" id="l17" style="visibility:hidden">緯度</label>
+                            </div>
                             
                         </div>
 
@@ -333,6 +343,8 @@
                                 document.getElementById('bussiness_day').style.visibility = "hidden";
                                 document.getElementById('open_time').style.visibility = "hidden";
                                 document.getElementById('close_time').style.visibility = "hidden";
+                                document.getElementById('latitude').style.visibility = "hidden";
+                                document.getElementById('longitude').style.visibility = "hidden";
 
                                 document.getElementById('l1').style.visibility = "hidden";
                                 document.getElementById('l2').style.visibility = "hidden";
@@ -347,6 +359,8 @@
                                 document.getElementById('l12').style.visibility = "hidden";
                                 document.getElementById('l13').style.visibility = "hidden";
                                 document.getElementById('l14').style.visibility = "hidden";
+                                document.getElementById('l16').style.visibility = "hidden";
+                                document.getElementById('l17').style.visibility = "hidden";
                             }
                             else if (x == "Insert") {
                                 document.getElementById('index').style.visibility = "hidden";
@@ -369,6 +383,8 @@
                                 document.getElementById('bussiness_day').style.visibility = "visible";
                                 document.getElementById('open_time').style.visibility = "visible";
                                 document.getElementById('close_time').style.visibility = "visible";
+                                document.getElementById('latitude').style.visibility = "visible";
+                                document.getElementById('longitude').style.visibility = "visible";
 
                                 document.getElementById('l1').style.visibility = "visible";
                                 document.getElementById('l2').style.visibility = "visible";
@@ -383,6 +399,8 @@
                                 document.getElementById('l12').style.visibility = "visible";
                                 document.getElementById('l13').style.visibility = "visible";
                                 document.getElementById('l14').style.visibility = "visible";
+                                document.getElementById('l16').style.visibility = "visible";
+                                document.getElementById('l17').style.visibility = "visible";
 
                             }
                             else if (x == "Delete") {
@@ -408,6 +426,8 @@
                                 document.getElementById('bussiness_day').style.visibility = "hidden";
                                 document.getElementById('open_time').style.visibility = "hidden";
                                 document.getElementById('close_time').style.visibility = "hidden";
+                                document.getElementById('latitude').style.visibility = "hidden";
+                                document.getElementById('longitude').style.visibility = "hidden";
 
                                 document.getElementById('l1').style.visibility = "hidden";
                                 document.getElementById('l2').style.visibility = "hidden";
@@ -422,6 +442,8 @@
                                 document.getElementById('l12').style.visibility = "hidden";
                                 document.getElementById('l13').style.visibility = "hidden";
                                 document.getElementById('l14').style.visibility = "hidden";
+                                document.getElementById('l16').style.visibility = "hidden";
+                                document.getElementById('l17').style.visibility = "hidden";
 
                                 //document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 請選擇欲修改的屬性 -- </option><option>電話</option><option>地址</option><option>評論數</option><option>價錢</option><option>店名</option><option>品牌</option><option>縣市</option><option>分區</option><option>平均星數</option>";
                                 document.getElementById('attribute').innerHTML = "<option disabled selected value> -- 僅限以電話欄位刪除喔 -- </option>";
