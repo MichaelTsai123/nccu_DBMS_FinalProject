@@ -303,7 +303,8 @@
                         function CRUD_function() {
                             var x = document.contactForm.way.value;
                             if (x == "Update") {
-                                document.getElementById('tables').innerHTML = "<option disabled selected value> -- 請選擇欲修改的表格 -- </option><option>店家資訊</option><option>區域</option><option>品牌</option><option>服務位置</option><option>評論</option><option>營業時間</option>";
+                                //document.getElementById('tables').innerHTML = "<option disabled selected value> -- 請選擇欲修改的表格 -- </option><option>店家資訊</option><option>區域</option><option>品牌</option><option>服務位置</option><option>評論</option><option>營業時間</option>";
+                                document.getElementById('tables').innerHTML = "<option disabled selected value> -- 請選擇欲修改的表格 -- </option><option>評論</option><option>平均星數</option>";
                                 document.getElementById('tables').style.visibility = "visible";
                                 document.getElementById('index').style.visibility = "visible";
                                 document.getElementById('attribute').style.visibility = "hidden";
