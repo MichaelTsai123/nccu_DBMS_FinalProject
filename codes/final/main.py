@@ -1,4 +1,3 @@
-
 from flask import Flask, g
 from flask import render_template
 import random
@@ -7,10 +6,9 @@ app = Flask(__name__)
 import csv
 import sqlite3
 import numpy as np
-hot_pot_name = ['大呼過癮', '雞湯大叔', '富樂']
-Store = [('12345678',20,4.5,'大呼過癮'), ('23456789',30,5,'雞湯大叔'), ('34567891',1,1,'富樂')]
-SQLITE_DB_SCHEMA = 'schema.sql'
-SQLITE_DB_PATH = 'test.db'
+
+SQLITE_DB_SCHEMA = 'hot_pot_schema.sql'
+SQLITE_DB_PATH = 'hot_pot.db'
 
 
 def get_db():
@@ -22,34 +20,6 @@ def get_db():
         
     return db
 
-@app.route('/reset')
-def reset_db():
-    with open(SQLITE_DB_SCHEMA, 'r') as f:
-        create_db_sql = f.read()
-    db = get_db()
-    # Reset database
-    # Note that CREATE/DROP table are *immediately* committed
-    # even inside a transaction
-    with db:
-        db.execute("DROP TABLE IF EXISTS Store")
-        db.execute("DROP TABLE IF EXISTS Hot_pot")
-        db.executescript(create_db_sql)
-    
-     #hot_pot_name
-    for i in hot_pot_name:
-        with db:
-            db.execute(
-             'INSERT INTO  Hot_pot (Brand) VALUES (?)',
-             (i,))
-     #Store
-    with db:
-        db.executemany(
-        'INSERT INTO  Store (Phonenumber, Comment_num, Avg_rating, Brand) VALUES (?, ?, ?, ?)',
-        Store)
-        
-    return render_template('index.html')
-        
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -59,34 +29,115 @@ def index():
 def draw():
     # Get the database connection
     db = get_db()
-    p = ''
-    table_name = request.form.get('table_name')
-    print(table_name)
-    if table_name == '品牌名稱':
-        tbl = "<tr><td>品牌名稱</td></tr>"
-        p+=tbl 
-        with db:
-            c = db.execute('SELECT * FROM Hot_pot')
-        for row in c:
-            a = "<tr><td>%s</td></tr>"%row[0]
-            p+=a
-        return '<html><head><title>品牌名稱的結果</title></head><body><table>{}</table></body></html>'.format(p)
-         
-    elif table_name == '火鍋店全名':
-        tbl = "<tr><td>電話號碼</td><td>評論數</td><td>平均星數</td><td>品牌名稱</td></tr>"
-        p+=tbl 
-        with db:
-            c = db.execute('SELECT * FROM Store')
-        for row in c:
-            p+="<tr>"
-            for column in row:
-                a = "<td>%s</td>"%column
-                p+=a
-            p+="</tr>"
-        return '<html><head><title>火鍋店全名的結果</title></head><body><table>{}</table></body></html>'.format(p)
-    else:
-        return '<p>你一定要勾選一個</p>'
+    if request.form.get('way') == 'Insert':
+        value1 = request.form.get('phone') 
+        value2 = request.form.get('address')
+        value3 = request.form.get('comment_level')  
+        value4 = request.form.get('cost')
+        value5 = request.form.get('shop_name')
+        value6 = request.form.get('brand')
+        value7 = request.form.get('city')
+        value8 = request.form.get('district')
+        value9 = request.form.get('star')
+        value10 = request.form.get('comment1')
+        value11 = request.form.get('bussiness_day')
+        value12 = request.form.get('open_time')
+        value13 = request.form.get('close_time')
+        value14 = request.form.get('latitude')
+        value15 = request.form.get('longitude')
+        print(value1,value2,value3,value4,value5,value6,value7,value8,value9,value10,value11,value12,value13,value14,value15)
+        if value1 == '':
+            return '<p> 給個電話號碼好嗎？</p>'
+        
+        #如果沒品牌就加入該品牌入Brand的table
+        if value6!='':
+            try:
+                with db:
+                    if db.execute("SELECT Brand FROM Hot_pot Where Brand=?",[value6]).fetchall() == []:
+                        db.execute("INSERT INTO Hot_pot (Brand) VALUES (?)",[value6])
+            except:
+                return '<p> Insert error (v6 Comment Brand type error)</p>'
 
+        #store 
+        if value2 or value3 or value4 or value5 or value6 or value7 or value8 or value9!='':
+            try:
+                with db:
+                    db.execute("INSERT INTO Store (Tel,Addr,Comment_num,Price_level,Store_name,Brand,City,District,Avg_rating) \
+                               VALUES (?,?,?,?,?,?,?,?,?)",[value1,value2,value3,value4,value5,value6,value7,value8,value9])
+            except:
+                return '<p> Insert error (v1~v9 type error)</p>'
+            
+        #comment format good;;;bad;;;i think i will eat again
+        if value10!='':
+            try:
+                c1,c2,c3 = value10.split(';;;')
+                with db:
+                    db.execute("INSERT INTO Commentor (Commentor1,Commentor2,Commentor3,Tel) Values (?,?,?,?)",[c1,c2,c3,value1])
+            except:
+                return '<p> Insert error (v10 comment or tel type error)</p>'
+            
+        if value14 or value15 !='':
+            try:
+                with db:
+                    db.execute("INSERT INTO Service (Lng,Lat,Tel) Values (?,?,?)",[value14,value15,value1])
+            except:
+                return '<p> Insert error (v14~v15 or tel type error)</p>'
+            
+        #Operation bussiness_day format 0 open_time 0000 close_time 2400
+        if value11 or value12 or value13!='':
+            try:
+                with db:
+                    db.execute("INSERT INTO Operation (Open_Day,Begin_,End_,Tel) Values (?,?,?,?)",[value11,value12,value13,value1])
+            except:
+                return '<p> Insert error (v11~v13 or tel type error)</p>'
+               
+        return render_template('index.html')
+        
+        
+    elif request.form.get('way') == 'Update':
+        if request.form.get('table')=='評論':
+            value1 = request.form.get('tel')
+            value2 = request.form.get('index')
+            try:
+                with db:
+                    if db.execute("Update Store Set Comment_num=? Where Tel=?",[int(value2),value1]).rowcount == 0:
+                        return '<p>Update error (no Tel)</p>'
+            except:
+                return '<p> Update error (Comment num type is not correct)</p>'
+                    
+               
+        elif request.form.get('table')=='平均星數':
+            value1 = request.form.get('tel')
+            value2 = request.form.get('index')
+            try:
+                with db:
+                    if db.execute("Update Store Set Avg_rating=? Where Tel=?",[float(value2),value1]).rowcount == 0:
+                        return '<p>Update error (no Tel)</p>'
+            except:
+                return '<p> Update error (Avg_rating type is not correct)</p>'
+           
+    elif request.form.get('way') == 'Delete':
+        need_delete_brand = False
+        value1 = request.form.get('tel')
+        brand_name = ''
+        #如果那家店是單獨的店，代表brand只有那一家屬於該brand，所以要把brand table 的那個值也刪除
+        with db:
+            try:
+                brand_name = db.execute("SELECT Brand FROM Store Where Tel=?",[value1]).fetchall()[0][0]
+            except:
+                return '<p>Delete error (no Tel)</p>'
+            if len(db.execute("SELECT Brand FROM Store Where Brand=?",[brand_name]).fetchall())==1:
+                need_delete_brand = True
+        with db:
+            c = db.execute("Delete FROM Store Where Tel=?",[value1])
+        
+        if need_delete_brand == True:
+            with db:
+                db.execute("Delete FROM Hot_pot Where Brand=?",[brand_name])
+        
+        return render_template('index.html')
+        
+    return render_template('index.html')
 
 @app.teardown_appcontext
 def close_connection(exception):
@@ -96,4 +147,4 @@ def close_connection(exception):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4999)
+    app.run(debug=True)
