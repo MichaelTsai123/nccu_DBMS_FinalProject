@@ -45,7 +45,7 @@ def draw():
         value13 = request.form.get('close_time')
         value14 = request.form.get('latitude')
         value15 = request.form.get('longitude')
-        print(value1,value2,value3,value4,value5,value6,value7,value8,value9,value10,value11,value12,value13,value14,value15)
+        #print(value1,value2,value3,value4,value5,value6,value7,value8,value9,value10,value11,value12,value13,value14,value15)
         if value1 == '':
             return '<p> 給個電話號碼好嗎？</p>'
         
