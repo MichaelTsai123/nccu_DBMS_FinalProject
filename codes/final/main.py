@@ -24,7 +24,12 @@ def get_db():
 def index():
     return render_template('index.html')
     
-
+@app.route('/search', methods=['POST'])
+def search():
+    district=request.form["district"]
+    price=request.form["price"]
+    return render_template('result.html',DISTRICT=district,PRICE=price)
+    
 @app.route('/show', methods=['POST'])
 def draw():
     # Get the database connection
