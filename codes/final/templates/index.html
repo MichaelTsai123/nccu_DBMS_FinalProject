@@ -18,6 +18,16 @@
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ url_for('static',    filename='css/styles.css') }}" rel="stylesheet" />
+    <style>
+    table tbody {
+    display:block;
+    height:500px;
+    overflow-y:scroll;
+    }
+
+
+    table thead th{background:#ccc;}
+    </style>
 </head>
 
 <body id="page-top">
@@ -82,22 +92,24 @@
             <form align="center" action="/search" method="POST">
                 <h4>區域：</h4>
                 <select name="district">
-                    <option>Songshan</option>
-                    <option>Xinyi</option>
-                    <option>Da’an</option>
-                    <option>Zhongshan</option>
-                    <option>Zhongzheng</option>
-                    <option>Datong</option>
-                    <option>Wanhua</option>
-                    <option>Wenshan</option>
-                    <option>Nangang</option>
-                    <option>Neihu</option>
-                    <option>Beitou</option>
-                    <option>Shilin</option>
+                    <option>ALL</option>
+                    <option>松山區</option>
+                    <option>信義區</option>
+                    <option>大安區</option>
+                    <option>中山區</option>
+                    <option>中正區</option>
+                    <option>大同區</option>
+                    <option>萬華區</option>
+                    <option>文山區</option>
+                    <option>南港區</option>
+                    <option>內湖區</option>
+                    <option>北投區</option>
+                    <option>士林區</option>
                 </select>
                 </br></br>
                 <h4>價格：</h4>
                 <select name="price">
+                    <option>ALL</option>
                     <option>$</option>
                     <option>$$</option>
                     <option>$$$</option>

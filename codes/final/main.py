@@ -26,9 +26,22 @@ def index():
     
 @app.route('/search', methods=['POST'])
 def search():
-    district=request.form["district"]
-    price=request.form["price"]
-    return render_template('result.html',DISTRICT=district,PRICE=price)
+    district=request.form['district']
+    price=request.form['price']
+    db = get_db()
+    if price=="$":
+        price=1
+    elif price=="$$":
+        price=2
+    elif price=="$$$":
+        price=3
+    else:
+        price=0
+    print(price,district)
+    with db:
+        content=db.execute("select Store_name,Price_level,Avg_rating from Store where Price_level=? and District=? order by Avg_rating Desc",[price,district])
+    content = content.fetchall()
+    return render_template('result.html', content=content)
     
 @app.route('/show', methods=['POST'])
 def draw():

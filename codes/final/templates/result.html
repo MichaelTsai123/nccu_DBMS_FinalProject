@@ -1,5 +1,21 @@
 {% extends "index.html" %}
 {% block content %}
+
 <h1>搜尋結果</h1>
-<h1>hi {{DISTRICT}}  {{PRICE}}</h1>
+</br>
+<table border=3 border-collapse: collapse>
+    <tr>
+        <th>店名</th>
+        <th>＄</th>
+        <th>星星</th>
+    </tr>
+    {% for i in content %}
+    <tr>
+        {% for j in i %}
+        <td width="300" height="80">{{ j }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
 {% endblock content %}
