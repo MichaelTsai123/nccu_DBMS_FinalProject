@@ -5,15 +5,18 @@
 </br>
 <table border=3 border-collapse: collapse>
     <tr>
-        <th>店名</th>
-        <th>＄</th>
-        <th>星星</th>
+        <th><font size="5">店名：</font></th>
+        <th><font size="5">價格：</font></th>
+        <th><font size="5">星星：</font></th>
     </tr>
     {% for i in content %}
     <tr>
         {% for j in i %}
-        <td width="300" height="80">{{ j }}</td>
+        <td width="250" height="80">
+            <font size="4">{{ j }}</front>
+        </td>
         {% endfor %}
+        <td><button type="button">連結</button></td>
     </tr>
     {% endfor %}
 </table>

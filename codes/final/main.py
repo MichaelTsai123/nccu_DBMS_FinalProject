@@ -28,6 +28,7 @@ def index():
 def search():
     district=request.form['district']
     price=request.form['price']
+    time=request.form['time']
     db = get_db()
     if price=="$":
         price=1
@@ -35,12 +36,18 @@ def search():
         price=2
     elif price=="$$$":
         price=3
+    if time==7:
+        time=time-7
+    if district!="ALL" and price!="ALL" and time!="ALL":
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
+    if district=="ALL" and price!="ALL" and time!="ALL":
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
     else:
-        price=0
-    print(price,district)
-    with db:
-        content=db.execute("select Store_name,Price_level,Avg_rating from Store where Price_level=? and District=? order by Avg_rating Desc",[price,district])
-    content = content.fetchall()
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation order by Avg_rating Desc")
+            
     return render_template('result.html', content=content)
     
 @app.route('/show', methods=['POST'])
