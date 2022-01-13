@@ -41,14 +41,31 @@ def search():
     if district!="ALL" and price!="ALL" and time!="ALL":
         with db:
             content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
-    if district=="ALL" and price!="ALL" and time!="ALL":
+    elif district=="ALL" and price!="ALL" and time!="ALL":
         with db:
             content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
-    else:
+    elif district=="ALL" and price=="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation order by Avg_rating Desc")
-            
-    return render_template('result.html', content=content)
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
+    elif district=="ALL" and price!="ALL" and time=="ALL":
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store where Price_level=? order by Avg_rating Desc",[price])
+    
+    elif district!="ALL" and price!="ALL" and time=="ALL":
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store where Price_level=? and District=? order by Avg_rating Desc",[price,district])
+    elif district!="ALL" and price=="ALL" and time!="ALL":
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
+    elif district!="ALL" and price=="ALL" and time=="ALL":
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store where District=? order by Avg_rating Desc",[district])
+    elif district=="ALL" and price=="ALL" and time=="ALL":
+        with db:
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store order by Avg_rating Desc")
+    if time==0:
+        time+=7
+    return render_template('result.html', content=content,district=district,price=price,time=time)
     
 @app.route('/show', methods=['POST'])
 def draw():
