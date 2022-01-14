@@ -69,9 +69,19 @@ def search():
 
 @app.route('/test123', methods=['POST'])
 def aaa():
-    print(request.form.get('fname'))
+    map_phone = request.form.get('fname')  # 得到電話號碼
+    # # #下query
+    db = get_db()
+    with db:
+        map_content = db.execute("select Service.Lng , Service.Lat from Service where Tel = ?",[map_phone])
+    
+    # print(map_content)
+    # #經度:
+    for row in map_content:
+        map_testy = row[0] # testx = 24.9848357
+        map_testx = row[1] # testy =121.5617507
 
-    return render_template('index.html')
+    return render_template('index.html' ,testx = map_testx  , testy = map_testy)
     
 @app.route('/show', methods=['POST'])
 def draw():
