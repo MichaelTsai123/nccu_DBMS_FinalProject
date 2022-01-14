@@ -525,28 +525,58 @@
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- 將 YOUR_API_KEY 替換成你的 API Key 即可 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtZxIFMNmzMg8masg3-Ff-99SygUf6zWE" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+    <!-- map -->
     <script>
-        function initMap() {
-            var Station_latlng = { lat: 24.9848357, lng: 121.5617507 }; // 台北車站的經緯度
-            var map = new google.maps.Map(document.getElementById('googlemap'), {
-                zoom: 20, //放大的倍率
-                center: Station_latlng //初始化的地圖中心位置
+        const googleMap = new Vue({
+          el: '#app',
+          data: {
+            map: null
+          },
+          methods: {
+            // init google map
+            initMap() {
+              
+              // 預設顯示的地點：
+              let location = {
+                lat: 25.0374865, // 經度
+                lng: 121.5647688 // 緯度
+              };
+              
+
+              let map_x = '{{testx}}'
+              let map_y = '{{testy}}'
+              
+              //建立地點
+              let testlocation  = new google.maps.LatLng(map_x, map_y);
+              
+              //建立map
+              this.map = new google.maps.Map(document.getElementById('googlemap'), {
+                center: testlocation,
+                zoom: 25,
+              });
+              
+              //建立marker
+              let marker = new google.maps.Marker({
+                position: testlocation,
+                map: this.map ,
+                animation: google.maps.Animation.BOUNCE
+              });
+
+
+            }
+          },
+          created() {
+            window.addEventListener('load', () => {
+              this.initMap();
             });
-
-            //--------下面是呼叫一個新marker------
-
-
-            var marker = new google.maps.Marker({
-                position: Station_latlng, //marker的放置位置
-                map: map //這邊的map指的是第四行的map變數
-            });
-
-        }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtZxIFMNmzMg8masg3-Ff-99SygUf6zWE&callback=initMap">
-        </script>
+          }
+        });
+      </script>
 
 </body>
 
