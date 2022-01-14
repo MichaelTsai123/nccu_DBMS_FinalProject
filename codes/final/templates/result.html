@@ -5,23 +5,27 @@
 </p>
 <p><font size="4">地區：{{district}}&emsp;價格：{{price}}&emsp;星期：{{time}}</font></p>
 </br>
-
+<form name="GGGG" action="/test123" method="post">
 <table border="3" border-collapse: collapse>
     <tr>
-        <th width="250" height="80"><font size="5">店名：</font></th>
-        <th width="100" height="80"><font size="5">價格：</font></th>
-        <th width="100" height="80"><font size="5">星星：</font></th>
+        <th width="250" height="80"><font size="4">店名：</font></th>
+        <th width="100" height="80"><font size="4">價格：</font></th>
+        <th width="100" height="80"><font size="4">星星：</font></th>
+        <th width="100" height="80"><font size="4">電話號碼：</font></th>
     </tr>
     {% for i in content %}
     <tr >
         {% for j in i %}
         <td  >
             <font size="4">{{ j }}</front>
+            
         </td>
         {% endfor %}
-        <td width="50" height="80"><button type="button">連結</button></td>
+        <td width="50" height="80"><button type="submit"  id="fname" name="fname" value="{{i[3][5]}}">查詢</button></td>
+
     </tr>
+    
     {% endfor %}
 </table>
-
+</form>
 {% endblock content %}
