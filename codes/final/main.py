@@ -40,32 +40,38 @@ def search():
         time=time-7
     if district!="ALL" and price!="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
     elif district=="ALL" and price!="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
     elif district=="ALL" and price=="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
     elif district=="ALL" and price!="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store where Price_level=? order by Avg_rating Desc",[price])
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where Price_level=? order by Avg_rating Desc",[price])
     
     elif district!="ALL" and price!="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store where Price_level=? and District=? order by Avg_rating Desc",[price,district])
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where Price_level=? and District=? order by Avg_rating Desc",[price,district])
     elif district!="ALL" and price=="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store,Operation where District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
     elif district!="ALL" and price=="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store where District=? order by Avg_rating Desc",[district])
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where District=? order by Avg_rating Desc",[district])
     elif district=="ALL" and price=="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Price_level,Avg_rating from Store order by Avg_rating Desc")
+            content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store order by Avg_rating Desc")
     if time==0:
         time+=7
     return render_template('result.html', content=content,district=district,price=price,time=time)
+
+@app.route('/test123', methods=['POST'])
+def aaa():
+    print(request.form.get('fname'))
+
+    return render_template('index.html')
     
 @app.route('/show', methods=['POST'])
 def draw():
@@ -189,5 +195,4 @@ def close_connection(exception):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    # app.run(host='0.0.0.0',debug=True)
+    app.run(host='0.0.0.0',debug=True)
