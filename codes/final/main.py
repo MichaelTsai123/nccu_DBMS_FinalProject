@@ -40,29 +40,29 @@ def search():
         time=int(time)-7
     if district!="ALL" and price!="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand, Price_level,Avg_rating,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
+            content=db.execute("select distinct(Store_name),Brand, Price_level,Avg_rating,Comment_num,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
     elif district=="ALL" and price!="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and  Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
+            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and  Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
     elif district=="ALL" and price=="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and   Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
+            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and   Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
     elif district=="ALL" and price!="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Commentor1 from Store,Commentor where Store.Tel=Commentor.Tel and Price_level=? order by Avg_rating Desc",[price])
+            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1 from Store,Commentor where Store.Tel=Commentor.Tel and Price_level=? order by Avg_rating Desc",[price])
     
     elif district!="ALL" and price!="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Commentor1 from Store,Commentor where Store.Tel=Commentor.Tel and  Price_level=? and District=? order by Avg_rating Desc",[price,district])
+            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1 from Store,Commentor where Store.Tel=Commentor.Tel and  Price_level=? and District=? order by Avg_rating Desc",[price,district])
     elif district!="ALL" and price=="ALL" and time!="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and  District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
+            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1 from Store,Operation,Commentor where Store.Tel=Commentor.Tel and  District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
     elif district!="ALL" and price=="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Commentor1 from Store ,Commentor where Store.Tel=Commentor.Tel and District=? order by Avg_rating Desc",[district])
+            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1 from Store ,Commentor where Store.Tel=Commentor.Tel and District=? order by Avg_rating Desc",[district])
     elif district=="ALL" and price=="ALL" and time=="ALL":
         with db:
-            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Commentor1 from Store,Commentor where Store.Tel=Commentor.Tel order by Avg_rating Desc")
+            content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1 from Store,Commentor where Store.Tel=Commentor.Tel order by Avg_rating Desc")
     if time==0:
         time+=7
     return render_template('result.html', content=content,district=district,price=price,time=time)
