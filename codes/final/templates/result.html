@@ -18,18 +18,18 @@
     </tr>
     {% for i in content %}
     <tr >
-        {% for j in range(4) %}
+        {% for j in range(5) %}
         <td  >
             <font size="3">{{ i[j] }}</front>
             
         </td>
         {% endfor %}
-        <td width="50" height="80"><button type="submit"  id="fname" name="fname" value="{{i[5]}}">查詢</button></td>
+        <td width="50" height="80"><button type="submit"  id="fname" name="fname" value="{{i[6]}}">查詢</button></td>
 
     </tr>
-    <td>評論</td>
+    <td width>評論</td>
     <td colspan="4" >
-    <font size="4">{{ i[4] }}</front>
+    <font size="4">{{ i[5] }}</front>
     </td>
     {% endfor %}
 </table>
