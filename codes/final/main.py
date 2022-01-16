@@ -36,8 +36,8 @@ def search():
         price=2
     elif price=="$$$":
         price=3
-    if time==7:
-        time=time-7
+    if time=='7':
+        time=int(time)-7
     if district!="ALL" and price!="ALL" and time!="ALL":
         with db:
             content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
