@@ -9,15 +9,17 @@
 <table border="3" border-collapse: collapse>
     <tr>
         <th width="250" height="80"><font size="4">店名：</font></th>
+        <th width="100" height="80"><font size="4">品牌：</font></th>
         <th width="100" height="80"><font size="4">價格：</font></th>
         <th width="100" height="80"><font size="4">星星：</font></th>
-        <th width="100" height="80"><font size="4">電話號碼：</font></th>
+        <th width="250" height="80"><font size="4">評論：</font></th>
+        
     </tr>
     {% for i in content %}
     <tr >
         {% for j in i %}
         <td  >
-            <font size="4">{{ j }}</front>
+            <font size="3">{{ j }}</front>
             
         </td>
         {% endfor %}
