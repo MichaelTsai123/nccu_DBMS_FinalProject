@@ -7,6 +7,8 @@ app.secret_key = "#230dec61-fee8-4ef2-a791-36f9e680c9fc"
 import csv
 import sqlite3
 import numpy as np
+from flask import session
+
 
 SQLITE_DB_SCHEMA = 'hot_pot_schema.sql'
 SQLITE_DB_PATH = 'hot_pot.db'
@@ -78,17 +80,7 @@ def search():
 
 @app.route('/search/googlemap', methods=['POST'])
 def aaa():
-    map_phone = request.form.get('fname')  # 得到電話號碼
     db = get_db()
-    with db:
-        map_phnum = db.execute("select Service.Lng , Service.Lat from Service where Tel = ?",[map_phone])
-    #經度:
-    for row in map_phnum:
-        map_testy = row[0] # testx = 24.9848357
-        map_testx = row[1] # testy =121.5617507
-
-
-
     #之前的table
     if "district" in session:
         district = session["district"]
@@ -96,44 +88,54 @@ def aaa():
         time = session["time"]
         # print('district:',map_district)
 
+    db = get_db()
     if price=="$":
         price=1
     elif price=="$$":
         price=2
     elif price=="$$$":
         price=3
-    if time==7:
-        time=time-7
+    if time=='7':
+        time=int(time)-7
     if district!="ALL" and price!="ALL" and time!="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
+
+            map_content=db.execute("select distinct(Store_name),Brand, Price_level,Avg_rating,Comment_num,Commentor1, Store.Tel from Store,Operation,Commentor where Store.Tel=Commentor.Tel and Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
     elif district=="ALL" and price!="ALL" and time!="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
+            map_content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1, Store.Tel from Store,Operation,Commentor where Store.Tel=Commentor.Tel and  Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
     elif district=="ALL" and price=="ALL" and time!="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
+            map_content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num,Commentor1, Store.Tel from Store,Operation,Commentor where Store.Tel=Commentor.Tel and   Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
     elif district=="ALL" and price!="ALL" and time=="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where Price_level=? order by Avg_rating Desc",[price])
+            map_content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1, Store.Tel from Store,Commentor where Store.Tel=Commentor.Tel and Price_level=? order by Avg_rating Desc",[price])
     
     elif district!="ALL" and price!="ALL" and time=="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where Price_level=? and District=? order by Avg_rating Desc",[price,district])
+            map_content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1, Store.Tel from Store,Commentor where Store.Tel=Commentor.Tel and  Price_level=? and District=? order by Avg_rating Desc",[price,district])
     elif district!="ALL" and price=="ALL" and time!="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
+            map_content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1, Store.Tel from Store,Operation,Commentor where Store.Tel=Commentor.Tel and  District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
     elif district!="ALL" and price=="ALL" and time=="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where District=? order by Avg_rating Desc",[district])
+            map_content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1, Store.Tel from Store ,Commentor where Store.Tel=Commentor.Tel and District=? order by Avg_rating Desc",[district])
     elif district=="ALL" and price=="ALL" and time=="ALL":
         with db:
-            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store order by Avg_rating Desc")
+            map_content=db.execute("select distinct(Store_name),Brand,Price_level,Avg_rating,Comment_num ,Commentor1, Store.Tel from Store,Commentor where Store.Tel=Commentor.Tel order by Avg_rating Desc")
+
     if time==0:
         time+=7
 
-
-    # return render_template('index.html',testx = map_testx  , testy = map_testy)
+    map_phone = request.form.get('fname')  # 得到電話號碼
+    print('map_phone',map_phone)
+    with db:
+        map_phnum = db.execute("select Service.Lng , Service.Lat from Service where Tel = ?",[map_phone])
+    #經度:
+    for row in map_phnum:
+        map_testy = row[0] # testx = 24.9848357
+        map_testx = row[1] # testy =121.5617507
+    print('return')
     return render_template('result.html' ,content=map_content,district=district,price=price,time=time,testx = map_testx  , testy = map_testy)
     
 @app.route('/show', methods=['POST'])
