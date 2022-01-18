@@ -3,6 +3,7 @@ from flask import render_template
 import random
 from flask import request
 app = Flask(__name__)
+app.secret_key = "#230dec61-fee8-4ef2-a791-36f9e680c9fc"
 import csv
 import sqlite3
 import numpy as np
@@ -27,8 +28,11 @@ def index():
 @app.route('/search', methods=['POST'])
 def search():
     district=request.form['district']
+    session["district"] = district
     price=request.form['price']
+    session["price"] = price
     time=request.form['time']
+    session["time"] = time
     db = get_db()
     if price=="$":
         price=1
@@ -72,21 +76,65 @@ def search():
         time+=7
     return render_template('result.html', content=content,district=district,price=price,time=time)
 
-@app.route('/test123', methods=['POST'])
+@app.route('/search/googlemap', methods=['POST'])
 def aaa():
     map_phone = request.form.get('fname')  # 得到電話號碼
-    # # #下query
     db = get_db()
     with db:
-        map_content = db.execute("select Service.Lng , Service.Lat from Service where Tel = ?",[map_phone])
-    
-    # print(map_content)
-    # #經度:
-    for row in map_content:
+        map_phnum = db.execute("select Service.Lng , Service.Lat from Service where Tel = ?",[map_phone])
+    #經度:
+    for row in map_phnum:
         map_testy = row[0] # testx = 24.9848357
         map_testx = row[1] # testy =121.5617507
 
-    return render_template('index.html' ,testx = map_testx  , testy = map_testy)
+
+
+    #之前的table
+    if "district" in session:
+        district = session["district"]
+        price = session["price"]
+        time = session["time"]
+        # print('district:',map_district)
+
+    if price=="$":
+        price=1
+    elif price=="$$":
+        price=2
+    elif price=="$$$":
+        price=3
+    if time==7:
+        time=time-7
+    if district!="ALL" and price!="ALL" and time!="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Price_level=? and District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,district,time])
+    elif district=="ALL" and price!="ALL" and time!="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Price_level=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[price,time])
+    elif district=="ALL" and price=="ALL" and time!="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[time])
+    elif district=="ALL" and price!="ALL" and time=="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where Price_level=? order by Avg_rating Desc",[price])
+    
+    elif district!="ALL" and price!="ALL" and time=="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where Price_level=? and District=? order by Avg_rating Desc",[price,district])
+    elif district!="ALL" and price=="ALL" and time!="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store,Operation where District=? and Store.Tel=Operation.Tel and Open_Day=? order by Avg_rating Desc",[district,time])
+    elif district!="ALL" and price=="ALL" and time=="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store where District=? order by Avg_rating Desc",[district])
+    elif district=="ALL" and price=="ALL" and time=="ALL":
+        with db:
+            map_content=db.execute("select distinct(Store_name),Price_level,Avg_rating, Store.Tel from Store order by Avg_rating Desc")
+    if time==0:
+        time+=7
+
+
+    # return render_template('index.html',testx = map_testx  , testy = map_testy)
+    return render_template('result.html' ,content=map_content,district=district,price=price,time=time,testx = map_testx  , testy = map_testy)
     
 @app.route('/show', methods=['POST'])
 def draw():
