@@ -156,6 +156,12 @@ def draw():
         value13 = request.form.get('close_time')
         value14 = request.form.get('latitude')
         value15 = request.form.get('longitude')
+        if value3 == 'NULL' or  value3 == 'null':
+            value3 = None
+        if value4 == 'NULL' or  value4 == 'null':
+            value4 = None
+        if value9 == 'NULL' or  value9 == 'null':
+            value9 = None
         #print(value1,value2,value3,value4,value5,value6,value7,value8,value9,value10,value11,value12,value13,value14,value15)
         if value1 == '':
             return '<p> 給個電話號碼好嗎？</p>'
@@ -209,9 +215,11 @@ def draw():
         if request.form.get('table')=='評論':
             value1 = request.form.get('tel')
             value2 = request.form.get('index')
+            if value2 == 'NULL' or  value2 == 'null':
+                value2 = None
             try:
                 with db:
-                    if db.execute("Update Store Set Comment_num=? Where Tel=?",[int(value2),value1]).rowcount == 0:
+                    if db.execute("Update Store Set Comment_num=? Where Tel=?",[value2,value1]).rowcount == 0:
                         return '<p>Update error (no Tel)</p>'
             except:
                 return '<p> Update error (Comment num type is not correct)</p>'
@@ -220,9 +228,11 @@ def draw():
         elif request.form.get('table')=='平均星數':
             value1 = request.form.get('tel')
             value2 = request.form.get('index')
+            if value2 == 'NULL' or  value2 == 'null':
+                value2 = None
             try:
                 with db:
-                    if db.execute("Update Store Set Avg_rating=? Where Tel=?",[float(value2),value1]).rowcount == 0:
+                    if db.execute("Update Store Set Avg_rating=? Where Tel=?",[value2,value1]).rowcount == 0:
                         return '<p>Update error (no Tel)</p>'
             except:
                 return '<p> Update error (Avg_rating type is not correct)</p>'
