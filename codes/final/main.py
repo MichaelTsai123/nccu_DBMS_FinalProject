@@ -128,14 +128,12 @@ def aaa():
         time+=7
 
     map_phone = request.form.get('fname')  # 得到電話號碼
-    print('map_phone',map_phone)
     with db:
         map_phnum = db.execute("select Service.Lng , Service.Lat from Service where Tel = ?",[map_phone])
     #經度:
     for row in map_phnum:
         map_testy = row[0] # testx = 24.9848357
         map_testx = row[1] # testy =121.5617507
-    print('return')
     return render_template('result.html' ,content=map_content,district=district,price=price,time=time,testx = map_testx  , testy = map_testy)
     
 @app.route('/show', methods=['POST'])
