@@ -37,8 +37,8 @@ CREATE TABLE Commentor (
 
 CREATE TABLE Operation (
 	Open_Day Int Not NULL CHECK (Open_Day>=0 and Open_Day<=6), 
-	Begin_ Int Not NULL CHECK (Begin_>=0 and Open_Day<=2400), 
-	End_ Int Not NULL CHECK (End_>=0 and Open_Day<=2400),
+	Begin_ Int Not NULL CHECK (Begin_>=0 and Begin_<=2400), 
+	End_ Int Not NULL CHECK (End_>=0 and End_<=2400),
 	Tel VARCHAR(12),
 	PRIMARY KEY (Tel, Open_Day, Begin_, End_),
 	FOREIGN KEY(Tel) REFERENCES Store(Tel) ON DELETE CASCADE ON UPDATE CASCADE
