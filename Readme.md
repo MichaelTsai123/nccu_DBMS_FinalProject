@@ -20,5 +20,5 @@ python main.py
 
 
 **地圖顯示**
-<img src="./figure/map.jpg" width = "1000" height = "400" div align=center />
+<img src="./figure/map.jpg" width = "1000" height = "600" div align=center />
 
