@@ -8,4 +8,4 @@
 python main.py
 ```
 
-<img src="./figure/main.png" width = "1000" height = "250" div align=center />
+<img src="./figure/main.jpg" width = "1000" height = "250" div align=center />
