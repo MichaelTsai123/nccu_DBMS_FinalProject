@@ -16,9 +16,9 @@ python main.py
 
 
 **搜尋結果**
-<img src="./figure/query.jpg" width = "1000" height = "400" div align=center />
+<img src="./figure/query.jpg" width = "1000" height = "600" div align=center />
 
 
 **地圖顯示**
-<img src="./figure/map.jpg" width = "1000" height = "300" div align=center />
+<img src="./figure/map.jpg" width = "1000" height = "400" div align=center />
 
