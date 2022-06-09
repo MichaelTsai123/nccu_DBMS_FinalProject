@@ -16,7 +16,7 @@ python main.py
 ```
 ### **執行結果**
 
-**網頁主頁面**
+**主頁面**
 <img src="./figure/main.jpg" width = "1000" height = "500" div align=center />
 
 
