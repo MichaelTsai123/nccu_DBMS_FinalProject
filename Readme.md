@@ -1,3 +1,5 @@
+# 110學年度第一學期 資料庫系統期末專題
+
 
 ### **Description**
 從Google爬取的資料放在documents/Scarper。
@@ -6,6 +8,8 @@
 
 ### **Demo**
 網頁內容請直接跑在codes/final底下的main.py
+
+**執行方式**
 ```
 cd codes/final
 python main.py
@@ -16,7 +20,7 @@ python main.py
 
 
 **搜尋結果**
-<img src="./figure/query.jpg" width = "1000" height = "600" div align=center />
+<img src="./figure/query.png" width = "1000" height = "700" div align=center />
 
 
 **地圖顯示**
